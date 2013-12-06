@@ -24,7 +24,10 @@ jQuery(function($) {
 
   // init
   $SCENE.add($MESSAGE).on("click", function() {
-    changeSet();
+    changeSet({
+      "src": "img/scene02.png",
+      "text": "this is the first text"
+    });
   });
 
   // functions
@@ -35,6 +38,9 @@ jQuery(function($) {
     text = (hash.text) ? hash.text : DEF_TEXT ;
     console.log("src:" + src);
     console.log("text:" + text);
+
+    changeScene(src);
+    changeMessage(text);
   }
 
   function changeScene(src) {
