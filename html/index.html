@@ -45,12 +45,12 @@ jQuery(function($) {
 
   // init
   $SCENE.add($MESSAGE).on("click", function() {
-    var sceneData = scenario[sceneNum];
-    changeSet(sceneData);
-    sceneNum++;
-
-    if(scenario.length < sceneNum) {
+    if(scenario.length <= sceneNum) {
       location.href = URL_TO_FINISH;
+    } else {
+      var sceneData = scenario[sceneNum];
+      changeSet(sceneData);
+      sceneNum++;
     }
   });
 
