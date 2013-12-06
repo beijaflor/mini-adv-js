@@ -9,20 +9,31 @@
 jQuery(function($) {
   // set variables
   var $SCENE = $("#scene");
+  var $MESSAGE = $("#message");
 
   // error check
   if($SCENE.length < 1) {
     throw('no <img id="scene">');
+  }
+  if($MESSAGE.length < 1) {
+    throw('no <p id="message">');
   }
 
   // init
   $SCENE.on("click", function() {
     changeScene("img/scene02.png");
   });
+  $MESSAGE.on("click", function() {
+    changeMessage("this is the first text");
+  });
 
   // functions
   function changeScene(src) {
     $SCENE.attr("src", src);
+  }
+
+  function changeMessage(text) {
+    $MESSAGE.text(text);
   }
 });
 
