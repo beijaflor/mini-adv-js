@@ -11,6 +11,9 @@ jQuery(function($) {
   var $SCENE = $("#scene");
   var $MESSAGE = $("#message");
 
+  var DEF_SCENE = $SCENE.attr("src");
+  var DEF_TEXT = "default text";
+
   // error check
   if($SCENE.length < 1) {
     throw('no <img id="scene">');
@@ -20,14 +23,20 @@ jQuery(function($) {
   }
 
   // init
-  $SCENE.on("click", function() {
-    changeScene("img/scene02.png");
-  });
-  $MESSAGE.on("click", function() {
-    changeMessage("this is the first text");
+  $SCENE.add($MESSAGE).on("click", function() {
+    changeSet();
   });
 
   // functions
+  function changeSet(hash) {
+    var src, text;
+    hash = (hash) ? hash : {} ;
+    src = (hash.src) ? hash.src : DEF_SCENE ;
+    text = (hash.text) ? hash.src : DEF_TEXT ;
+    console.log("src:" + src);
+    console.log("text:" + text);
+  }
+
   function changeScene(src) {
     $SCENE.attr("src", src);
   }
