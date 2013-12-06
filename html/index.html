@@ -16,7 +16,7 @@ var scenario = [
     "text": "this is scene 3"
   }, {
     "src": "img/scene04.png",
-    "text": "this is scene 5"
+    "text": "this is scene 4"
   }, {
     "src": "img/scene05.png",
     "text": "this is scene 5"
@@ -30,6 +30,8 @@ jQuery(function($) {
 
   var DEF_SCENE = $SCENE.attr("src");
   var DEF_TEXT = "default text";
+
+  var URL_TO_FINISH = "http://www.goo.ne.jp/";
 
   var sceneNum = 0;
 
@@ -46,6 +48,10 @@ jQuery(function($) {
     var sceneData = scenario[sceneNum];
     changeSet(sceneData);
     sceneNum++;
+
+    if(scenario.length < sceneNum) {
+      location.href = URL_TO_FINISH;
+    }
   });
 
   // functions
