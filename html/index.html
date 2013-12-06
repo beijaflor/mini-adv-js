@@ -18,7 +18,7 @@ var scenario = [
     "src": "img/scene04.png",
     "text": "this is scene 5"
   }, {
-    "src": "img/scene04.png",
+    "src": "img/scene05.png",
     "text": "this is scene 5"
   }
 ];
@@ -31,6 +31,8 @@ jQuery(function($) {
   var DEF_SCENE = $SCENE.attr("src");
   var DEF_TEXT = "default text";
 
+  var sceneNum = 0;
+
   // error check
   if($SCENE.length < 1) {
     throw('no <img id="scene">');
@@ -41,10 +43,9 @@ jQuery(function($) {
 
   // init
   $SCENE.add($MESSAGE).on("click", function() {
-    changeSet({
-      "src": "img/scene02.png",
-      "text": "this is the first text"
-    });
+    var sceneData = scenario[sceneNum];
+    changeSet(sceneData);
+    sceneNum++;
   });
 
   // functions
