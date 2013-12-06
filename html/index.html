@@ -5,6 +5,28 @@
 <title>mini-adv-js</title>
 <link rel="stylesheet" href="css/mini-adv.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+<script>
+jQuery(function($) {
+  // set variables
+  var $SCENE = $("#scene");
+
+  // error check
+  if($SCENE.length < 1) {
+    throw('no <img id="scene">');
+  }
+
+  // init
+  $SCENE.on("click", function() {
+    changeScene("img/scene02.png");
+  });
+
+  // functions
+  function changeScene(src) {
+    $SCENE.attr("src", src);
+  }
+});
+
+</script>
 </head>
 <body>
 
