@@ -1,0 +1,22 @@
+h1 {
+  text-align:center;
+}
+body>* {
+  width:60%;
+  margin:0 auto 20px;
+}
+#sec-scene {
+}
+img#scene {
+  width:100%;
+  height:auto;
+}
+#sec-message {
+}
+p#message {
+  height:6em;
+  padding:15px;
+  line-height:1.5;
+  border:solid 2px #666;
+  border-radius:8px;
+}
