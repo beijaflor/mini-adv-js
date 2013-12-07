@@ -11,7 +11,7 @@ var scenario = [
   {    // SCENE 0
     "src": "img/scene02.png",
     "text": "this is scene 2",
-    "next": 1
+    "next": 2
   }, { // SCENE 1
     "src": "img/scene03.png",
     "text": "this is scene 3",
@@ -19,11 +19,11 @@ var scenario = [
   }, { // SCENE 2
     "src": "img/scene04.png",
     "text": "this is scene 4",
-    "next": 5
+    "next": 1
   }, { // SCENE 3
     "src": "img/scene05.png",
     "text": "this is scene 5",
-    "next": 2
+    "next": 256
   }
 ];
 
@@ -49,16 +49,19 @@ jQuery(function($) {
 
   // init
   $SCENE.add($MESSAGE).on("click", function() {
-    if(scenario.length <= sceneNum) {
-      location.href = URL_TO_FINISH;
-    } else {
-      var sceneData = scenario[sceneNum];
-      changeSet(sceneData);
-      sceneNum = sceneData["next"];
-    }
+    sceneNum = nextScene(scenario, sceneNum);
   });
 
   // functions
+  function nextScene(arr, num) {
+    if(arr.length <= num) {
+      location.href = URL_TO_FINISH;
+    } else {
+      var sceneData = arr[num];
+      changeSet(sceneData);
+      return sceneData["next"];
+    }
+  }
   function changeSet(hash) {
     var src, text;
     hash = (hash) ? hash : {} ;
