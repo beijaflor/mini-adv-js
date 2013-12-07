@@ -4,22 +4,26 @@
 <meta charset="utf-8">
 <title>mini-adv-js</title>
 <link rel="stylesheet" href="css/mini-adv.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
 <script>
 
 var scenario = [
-  {
+  {    // SCENE 0
     "src": "img/scene02.png",
-    "text": "this is scene 2"
-  }, {
+    "text": "this is scene 2",
+    "next": 1
+  }, { // SCENE 1
     "src": "img/scene03.png",
-    "text": "this is scene 3"
-  }, {
+    "text": "this is scene 3",
+    "next": 3
+  }, { // SCENE 2
     "src": "img/scene04.png",
-    "text": "this is scene 4"
-  }, {
+    "text": "this is scene 4",
+    "next": 5
+  }, { // SCENE 3
     "src": "img/scene05.png",
-    "text": "this is scene 5"
+    "text": "this is scene 5",
+    "next": 2
   }
 ];
 
@@ -50,7 +54,7 @@ jQuery(function($) {
     } else {
       var sceneData = scenario[sceneNum];
       changeSet(sceneData);
-      sceneNum++;
+      sceneNum = sceneData["next"];
     }
   });
 
