@@ -11,7 +11,7 @@ var scenario = [
   {    // SCENE 0
     "src": "img/scene02.png",
     "text": "this is scene 2",
-    "next": 2
+    "next": [1, 2]
   }, { // SCENE 1
     "src": "img/scene03.png",
     "text": "this is scene 3",
@@ -19,7 +19,7 @@ var scenario = [
   }, { // SCENE 2
     "src": "img/scene04.png",
     "text": "this is scene 4",
-    "next": 1
+    "next": 0
   }, { // SCENE 3
     "src": "img/scene05.png",
     "text": "this is scene 5",
@@ -54,12 +54,15 @@ jQuery(function($) {
 
   // functions
   function nextScene(arr, num) {
+    var sceneData, next;
     if(arr.length <= num) {
       location.href = URL_TO_FINISH;
     } else {
-      var sceneData = arr[num];
+      sceneData = arr[num];
       changeSet(sceneData);
-      return sceneData["next"];
+      next = sceneData["next"];
+      next = ($.isArray.next) ? next[0] : next ; 
+      return next;
     }
   }
   function changeSet(hash) {
