@@ -86,13 +86,16 @@ jQuery(function($) {
       var option1 = $("<div>").attr("id", "button1").css(BOX_STYLE2);
       var option2 = $("<div>").attr("id", "button2").css(BOX_STYLE3);
 
-      $SCENE.add($MESSAGE).on("click", function() {
+      option1.on("click", function() {
         setNext(nextScene(scenario, next[0]));
+      });
+      option2.on("click", function() {
+        setNext(nextScene(scenario, next[1]));
       });
       $("#sec-scene").append(option1, option2);
     } else {
       var option = $("<div>").attr("id", "button1").css(BOX_STYLE1);
-      $SCENE.add($MESSAGE).on("click", function() {
+      option.on("click", function() {
         setNext(nextScene(scenario, next));
       });
       $("#sec-scene").append(option);
