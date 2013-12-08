@@ -48,21 +48,29 @@ jQuery(function($) {
   }
 
   // init
-  $SCENE.add($MESSAGE).on("click", function() {
-    sceneNum = nextScene(scenario, sceneNum);
-  });
+  setNext(0);
 
   // functions
+  function setNext(next) {
+    $SCENE.add($MESSAGE).off("click");
+    if($.isArray(next)) {
+      $SCENE.add($MESSAGE).on("click", function() {
+        setNext(nextScene(scenario, next[0]));
+      });
+    } else {
+      $SCENE.add($MESSAGE).on("click", function() {
+        setNext(nextScene(scenario, next));
+      });
+    }
+  }
   function nextScene(arr, num) {
-    var sceneData, next;
+    var sceneData;
     if(arr.length <= num) {
       location.href = URL_TO_FINISH;
     } else {
       sceneData = arr[num];
       changeSet(sceneData);
-      next = sceneData["next"];
-      next = ($.isArray.next) ? next[0] : next ; 
-      return next;
+      return sceneData["next"];
     }
   }
   function changeSet(hash) {
