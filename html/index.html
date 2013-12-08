@@ -10,7 +10,7 @@
 var scenario = [
   {    // SCENE 0
     "src": "img/scene02.png",
-    "text": "this is scene 2",
+    "text": "this is scene 2<br>to scene 3<br><br>to scene 4",
     "next": [1, 2]
   }, { // SCENE 1
     "src": "img/scene03.png",
@@ -31,36 +31,39 @@ jQuery(function($) {
   // set variables
   var $SCENE = $("#scene");
   var $MESSAGE = $("#message");
-  var $BUTTON_AREA = $("#sec-scene");
+  var $BUTTON_AREA = $("#sec-message");
 
   var DEF_SCENE = $SCENE.attr("src");
   var DEF_TEXT = "default text";
 
   var BOX_STYLE1 = {
     "position": "absolute",
-    "top": "10px",
-    "left": "10px",
+    "top": "0",
+    "left": "0",
     "border": "solid 1px #999",
-    "width": "100px",
-    "height": "100px"
+    "width": "100%",
+    "height": "100%",
+    "boxSizing": "border-box"
   };
 
   var BOX_STYLE2 = {
     "position": "absolute",
-    "top": "10px",
-    "left": "10px",
+    "top": "2.5em",
+    "left": "0",
     "border": "solid 1px #899",
-    "width": "100px",
-    "height": "100px"
+    "width": "100%",
+    "height": "1.6em",
+    "boxSizing": "border-box"
   };
 
   var BOX_STYLE3 = {
     "position": "absolute",
-    "top": "10px",
-    "left": "150px",
+    "top": "5.5em",
+    "left": "0",
     "border": "solid 1px #989",
-    "width": "100px",
-    "height": "100px"
+    "width": "100%",
+    "height": "1.6em",
+    "boxSizing": "border-box"
   };
 
   var URL_TO_FINISH = "http://www.goo.ne.jp/";
@@ -92,13 +95,13 @@ jQuery(function($) {
       option2.on("click", function() {
         setNext(nextScene(scenario, next[1]));
       });
-      $("#sec-scene").append(option1, option2);
+      $BUTTON_AREA.append(option1, option2);
     } else {
       var option = $("<div>").attr("id", "button1").css(BOX_STYLE1);
       option.on("click", function() {
         setNext(nextScene(scenario, next));
       });
-      $("#sec-scene").append(option);
+      $BUTTON_AREA.append(option);
     }
   }
   function nextScene(arr, num) {
@@ -128,7 +131,7 @@ jQuery(function($) {
   }
 
   function changeMessage(text) {
-    $MESSAGE.text(text);
+    $MESSAGE.html(text);
   }
 });
 
