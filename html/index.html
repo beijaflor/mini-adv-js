@@ -31,9 +31,37 @@ jQuery(function($) {
   // set variables
   var $SCENE = $("#scene");
   var $MESSAGE = $("#message");
+  var $BUTTON_AREA = $("#sec-scene");
 
   var DEF_SCENE = $SCENE.attr("src");
   var DEF_TEXT = "default text";
+
+  var BOX_STYLE1 = {
+    "position": "absolute",
+    "top": "10px",
+    "left": "10px",
+    "border": "solid 1px #999",
+    "width": "100px",
+    "height": "100px"
+  };
+
+  var BOX_STYLE2 = {
+    "position": "absolute",
+    "top": "10px",
+    "left": "10px",
+    "border": "solid 1px #899",
+    "width": "100px",
+    "height": "100px"
+  };
+
+  var BOX_STYLE3 = {
+    "position": "absolute",
+    "top": "10px",
+    "left": "150px",
+    "border": "solid 1px #989",
+    "width": "100px",
+    "height": "100px"
+  };
 
   var URL_TO_FINISH = "http://www.goo.ne.jp/";
 
@@ -53,14 +81,21 @@ jQuery(function($) {
   // functions
   function setNext(next) {
     $SCENE.add($MESSAGE).off("click");
+    $BUTTON_AREA.find("div").remove();
     if($.isArray(next)) {
+      var option1 = $("<div>").attr("id", "button1").css(BOX_STYLE2);
+      var option2 = $("<div>").attr("id", "button2").css(BOX_STYLE3);
+
       $SCENE.add($MESSAGE).on("click", function() {
         setNext(nextScene(scenario, next[0]));
       });
+      $("#sec-scene").append(option1, option2);
     } else {
+      var option = $("<div>").attr("id", "button1").css(BOX_STYLE1);
       $SCENE.add($MESSAGE).on("click", function() {
         setNext(nextScene(scenario, next));
       });
+      $("#sec-scene").append(option);
     }
   }
   function nextScene(arr, num) {
