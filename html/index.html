@@ -36,6 +36,8 @@ jQuery(function($) {
   var DEF_SCENE = $SCENE.attr("src");
   var DEF_TEXT = "default text";
 
+  var SPEED = 10;
+
   var BOX_STYLE1 = {
     "position": "absolute",
     "top": "0",
@@ -131,11 +133,19 @@ jQuery(function($) {
   }
 
   function changeMessage(text) {
+    var interval;
     var text = text.split("");
     $MESSAGE.html("");
     for(var i = 0; i < 5; i++){
       showOneChar(text.shift());
     }
+    interval = setInterval(function() {
+      if(text.length <= 0) {
+        clearInterval(interval);
+      } else {
+        showOneChar(text.shift());
+      }
+    }, SPEED);
 
     function showOneChar(chr) {
       $MESSAGE.html($MESSAGE.html() + chr);
