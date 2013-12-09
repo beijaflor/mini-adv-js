@@ -11,11 +11,25 @@ var scenario = [
   {    // SCENE 0
     "src": "img/scene02.png",
     "text": "this is scene 2/to scene 3//to scene 4",
-    "next": [1, 2]
+    "next": [1, 2],
+    "link": {
+      "top": "10px",
+      "left": "10px",
+      "width": "100px",
+      "height": "100px",
+    },
+    "linkUrl": "http://www.goo.ne.jp/howto/"
   }, { // SCENE 1
     "src": "img/scene03.png",
     "text": "this is scene 3",
-    "next": 3
+    "next": 3,
+    "link": {
+      "top": "10px",
+      "left": "50px",
+      "width": "20px",
+      "height": "100px",
+    },
+    "linkUrl": "http://www.goo.ne.jp/howto/"
   }, { // SCENE 2
     "src": "img/scene04.png",
     "text": "this is scene 4",
@@ -32,6 +46,7 @@ jQuery(function($) {
   var $SCENE = $("#scene");
   var $MESSAGE = $("#message");
   var $BUTTON_AREA = $("#sec-message");
+  var $LINK_AREA = $("#sec-scene");
 
   var DEF_SCENE = $SCENE.attr("src");
   var DEF_TEXT = "default text";
@@ -67,6 +82,12 @@ jQuery(function($) {
     "height": "1.6em",
     "boxSizing": "border-box"
   };
+
+  var LINK_STYLE_DEFAULT = {
+    "position": "absolute",
+    "display": "block",
+    "background": "rgba(0,0,0,0.3)"
+  }
 
   var URL_TO_FINISH = "http://www.goo.ne.jp/";
 
@@ -126,6 +147,7 @@ jQuery(function($) {
 
     changeScene(src);
     changeMessage(text);
+    changeLink(hash.linkUrl, hash.link);
   }
 
   function changeScene(src) {
@@ -153,6 +175,17 @@ jQuery(function($) {
       } else {
         $MESSAGE.html($MESSAGE.html() + chr);
       }
+    }
+  }
+  function changeLink(link, hash) {
+    var a;
+    $LINK_AREA.find("a").remove();
+    if(link) {
+      a = $("<a>").css(LINK_STYLE_DEFAULT).css(hash).attr("href", link);
+      $LINK_AREA.append(a);
+    } else {
+      console.log("a");
+      return false;
     }
   }
 });

@@ -6,6 +6,7 @@ body>* {
   margin:0 auto 20px;
 }
 #sec-scene {
+  position:relative;
 }
 img#scene {
   width:100%;
