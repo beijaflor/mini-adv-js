@@ -52,7 +52,7 @@ jQuery(function($) {
     "left": "0",
     "border": "solid 1px #999",
     "width": "100%",
-    "height": "100%",
+    "height": "7.8em",
     "boxSizing": "border-box"
   };
 
@@ -125,7 +125,7 @@ jQuery(function($) {
     if(arr.length <= num) {
       location.href = URL_TO_FINISH;
     } else {
-      sceneData = arr.num;
+      sceneData = arr[num];
       changeSet(sceneData);
       return sceneData.next;
     }
@@ -161,7 +161,7 @@ jQuery(function($) {
     }, SPEED);
 
     function showOneChar(chr) {
-      if(chr == "/") {
+      if(chr === "/") {
         $MESSAGE.html($MESSAGE.html() + "<br>");
       } else {
         $MESSAGE.html($MESSAGE.html() + chr);
