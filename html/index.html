@@ -148,7 +148,11 @@ jQuery(function($) {
     }, SPEED);
 
     function showOneChar(chr) {
-      $MESSAGE.html($MESSAGE.html() + chr);
+      if(chr == "/") {
+        $MESSAGE.html($MESSAGE.html() + "<br>");
+      } else {
+        $MESSAGE.html($MESSAGE.html() + chr);
+      }
     }
   }
 });
