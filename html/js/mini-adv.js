@@ -1,3 +1,5 @@
+'use strict';
+
 var scenario = [
   {    // SCENE 0
     "src": "img/scene02.png",
@@ -7,7 +9,7 @@ var scenario = [
       "top": "10px",
       "left": "10px",
       "width": "100px",
-      "height": "100px",
+      "height": "100px"
     },
     "linkUrl": "http://www.goo.ne.jp/howto/"
   }, { // SCENE 1
@@ -18,7 +20,7 @@ var scenario = [
       "top": "10px",
       "left": "50px",
       "width": "20px",
-      "height": "100px",
+      "height": "100px"
     },
     "linkUrl": "http://www.goo.ne.jp/howto/"
   }, { // SCENE 2
@@ -78,7 +80,7 @@ jQuery(function($) {
     "position": "absolute",
     "display": "block",
     "background": "rgba(0,0,0,0.3)"
-  }
+  };
 
   var URL_TO_FINISH = "http://www.goo.ne.jp/";
 
@@ -123,9 +125,9 @@ jQuery(function($) {
     if(arr.length <= num) {
       location.href = URL_TO_FINISH;
     } else {
-      sceneData = arr[num];
+      sceneData = arr.num;
       changeSet(sceneData);
-      return sceneData["next"];
+      return sceneData.next;
     }
   }
   function changeSet(hash) {
@@ -133,8 +135,6 @@ jQuery(function($) {
     hash = (hash) ? hash : {} ;
     src = (hash.src) ? hash.src : DEF_SCENE ;
     text = (hash.text) ? hash.text : DEF_TEXT ;
-    console.log("src:" + src);
-    console.log("text:" + text);
 
     changeScene(src);
     changeMessage(text);
@@ -146,10 +146,10 @@ jQuery(function($) {
   }
 
   function changeMessage(text) {
-    var interval;
-    var text = text.split("");
+    var interval, i;
+    text = text.split("");
     $MESSAGE.html("");
-    for(var i = 0; i < 5; i++){
+    for(i = 0; i < 5; i++){
       showOneChar(text.shift());
     }
     interval = setInterval(function() {
@@ -175,7 +175,6 @@ jQuery(function($) {
       a = $("<a>").css(LINK_STYLE_DEFAULT).css(hash).attr("href", link);
       $LINK_AREA.append(a);
     } else {
-      console.log("a");
       return false;
     }
   }
