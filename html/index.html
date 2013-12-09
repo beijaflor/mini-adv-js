@@ -10,7 +10,7 @@
 var scenario = [
   {    // SCENE 0
     "src": "img/scene02.png",
-    "text": "this is scene 2<br>to scene 3<br><br>to scene 4",
+    "text": "this is scene 2/to scene 3//to scene 4",
     "next": [1, 2]
   }, { // SCENE 1
     "src": "img/scene03.png",
@@ -131,7 +131,12 @@ jQuery(function($) {
   }
 
   function changeMessage(text) {
-    $MESSAGE.html(text);
+    var text = text.split("");
+    showOneChar(text[0]);
+
+    function showOneChar(chr) {
+      $MESSAGE.html($MESSAGE.html() + chr);
+    }
   }
 });
 
