@@ -132,7 +132,10 @@ jQuery(function($) {
 
   function changeMessage(text) {
     var text = text.split("");
-    showOneChar(text[0]);
+    $MESSAGE.html("");
+    for(var i = 0; i < 5; i++){
+      showOneChar(text.shift());
+    }
 
     function showOneChar(chr) {
       $MESSAGE.html($MESSAGE.html() + chr);
