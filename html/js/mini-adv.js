@@ -106,38 +106,41 @@ jQuery(function($) {
       var option2 = $("<div>").attr("id", "button2").css(BOX_STYLE3);
 
       option1.on("click", function() {
-        setNext(nextScene(scenario, next[0]));
+        $BUTTON_AREA.find("div").remove();
+        nextScene(scenario, next[0], setNext);
       });
       option2.on("click", function() {
-        setNext(nextScene(scenario, next[1]));
+        $BUTTON_AREA.find("div").remove();
+        nextScene(scenario, next[1], setNext);
       });
       $BUTTON_AREA.append(option1, option2);
     } else {
       var option = $("<div>").attr("id", "button1").css(BOX_STYLE1);
       option.on("click", function() {
-        setNext(nextScene(scenario, next));
+        $BUTTON_AREA.find("div").remove();
+        nextScene(scenario, next, setNext);
       });
       $BUTTON_AREA.append(option);
     }
   }
-  function nextScene(arr, num) {
+  function nextScene(arr, num, callback) {
     var sceneData;
     if(arr.length <= num) {
       location.href = URL_TO_FINISH;
     } else {
       sceneData = arr[num];
-      changeSet(sceneData);
+      changeSet(sceneData, callback);
       return sceneData.next;
     }
   }
-  function changeSet(hash) {
+  function changeSet(hash, callback) {
     var src, text;
     hash = (hash) ? hash : {} ;
     src = (hash.src) ? hash.src : DEF_SCENE ;
     text = (hash.text) ? hash.text : DEF_TEXT ;
 
     changeScene(src);
-    changeMessage(text);
+    changeMessage(text, hash.next, callback);
     changeLink(hash.linkUrl, hash.link);
   }
 
@@ -145,7 +148,7 @@ jQuery(function($) {
     $SCENE.attr("src", src);
   }
 
-  function changeMessage(text) {
+  function changeMessage(text, next, callback) {
     var interval, i;
     text = text.split("");
     $MESSAGE.html("");
@@ -155,6 +158,7 @@ jQuery(function($) {
     interval = setInterval(function() {
       if(text.length <= 0) {
         clearInterval(interval);
+        callback(next);
       } else {
         showOneChar(text.shift());
       }
